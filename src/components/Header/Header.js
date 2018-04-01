@@ -11,7 +11,7 @@ const FullSegment = styled(Segment).attrs({
 
 const IconButton = styled(Button).attrs({
   style: {
-    backgroundColor: 'black',
+    backgroundColor: '#1b1c1d',
     color: 'white',
   },
   size: 'big',
