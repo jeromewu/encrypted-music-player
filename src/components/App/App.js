@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AES, enc } from 'crypto-js';
 
+console.log(process.env.PUBLI_URL);
 
 class App extends Component {
   state = {
@@ -8,7 +9,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch('/audios/crowd-cheering.mp3.enc')
+    fetch('audios/crowd-cheering.mp3.enc')
       .then(resp => resp.json())
       .then(({ header, data }) => {
         this.setState({
