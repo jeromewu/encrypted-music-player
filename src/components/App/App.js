@@ -1,38 +1,43 @@
-import React, { Component } from 'react';
-import { AES, enc } from 'crypto-js';
+import React from 'react';
+import check from 'check-types';
+import PropTypes from 'prop-types';
+import { Route, Redirect } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
+import IntlProvider from 'containers/IntlProvider';
+import history from 'utils/history';
+import Header from 'components/Header';
+import Background from 'components/Background';
+import Main from 'components/Main';
+import Home from 'routes/Home';
+import Index from 'routes/Index';
 
-console.log(process.env.PUBLI_URL);
+const App = ({ store }) => (
+  <Provider store={store}>
+    <IntlProvider>
+      <Background>
+        <Header />
+        <ConnectedRouter history={history}>
+          <Main>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                check.null(store.getState().config.keyphrase)
+                  ? <Home />
+                  : <Redirect to="/index" />
+              )}
+            />
+            <Route exact path="/index" component={Index} />
+          </Main>
+        </ConnectedRouter>
+      </Background>
+    </IntlProvider>
+  </Provider>
+);
 
-class App extends Component {
-  state = {
-    imageData: '',
-  }
-
-  componentWillMount() {
-    fetch('audios/crowd-cheering.mp3.enc')
-      .then(resp => resp.json())
-      .then(({ header, data }) => {
-        this.setState({
-          imageData: `${header}${AES.decrypt(data, 'test').toString(enc.Utf8)}`,
-        });
-      });
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <audio controls src={this.state.imageData}>
-          <track kind="captions" />
-        </audio>
-      </div>
-    );
-  }
-}
+App.propTypes = {
+  store: PropTypes.object.isRequired,
+};
 
 export default App;
