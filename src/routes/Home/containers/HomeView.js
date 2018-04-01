@@ -10,7 +10,7 @@ export const mapStateToProps = ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  onSubmit: () => dispatch(push('/index')),
+  onSubmit: () => dispatch(push('/albums')),
   onUpdate: (evt, { value }) => dispatch(setConfig({ keyphrase: value })),
 });
 

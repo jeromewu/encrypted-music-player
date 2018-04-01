@@ -10,7 +10,7 @@ import Header from 'components/Header';
 import Background from 'components/Background';
 import Main from 'components/Main';
 import Home from 'routes/Home';
-import Index from 'routes/Index';
+import Albums from 'routes/Albums';
 
 const App = ({ store }) => (
   <Provider store={store}>
@@ -25,10 +25,10 @@ const App = ({ store }) => (
               render={() => (
                 check.null(store.getState().config.keyphrase)
                   ? <Home />
-                  : <Redirect to="/index" />
+                  : <Redirect to="/albums" />
               )}
             />
-            <Route exact path="/index" component={Index} />
+            <Route exact path="/albums" component={Albums} />
           </Main>
         </ConnectedRouter>
       </Background>

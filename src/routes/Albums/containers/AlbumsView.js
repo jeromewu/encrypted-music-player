@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import IndexView from '../components/IndexView';
+import AlbumsView from '../components/AlbumsView';
 
 export const mapStateToProps = () => ({
 });
@@ -10,4 +10,4 @@ export const mapDispatchToProps = () => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(IndexView);
+)(AlbumsView);
