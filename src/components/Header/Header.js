@@ -14,7 +14,6 @@ const IconButton = styled(Button).attrs({
     backgroundColor: '#1b1c1d',
     color: 'white',
   },
-  size: 'big',
 })``;
 
 const Left = styled.div`
